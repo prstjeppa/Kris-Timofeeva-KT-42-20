@@ -11,7 +11,7 @@ using kriskt_42_20.Database;
 namespace kriskt_42_20.Migrations
 {
     [DbContext(typeof(PrepodDbcontext))]
-    [Migration("20231004130210_CreateDatabase")]
+    [Migration("20231023122330_CreateDatabase")]
     partial class CreateDatabase
     {
         /// <inheritdoc />
@@ -61,7 +61,7 @@ namespace kriskt_42_20.Migrations
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(Max)")
-                        .HasColumnName("c_student_firstname")
+                        .HasColumnName("c_prepod_firstname")
                         .HasComment("Имя преподавателя");
 
                     b.Property<int>("KafedraId")
@@ -73,14 +73,14 @@ namespace kriskt_42_20.Migrations
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(Max)")
-                        .HasColumnName("c_student_lastname")
+                        .HasColumnName("c_prepod_lastname")
                         .HasComment("Фамилия преподавателя");
 
                     b.Property<string>("MiddleName")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(Max)")
-                        .HasColumnName("c_student_middlename")
+                        .HasColumnName("c_prepod_middlename")
                         .HasComment("Отчество преподавателя");
 
                     b.HasKey("PrepodId")

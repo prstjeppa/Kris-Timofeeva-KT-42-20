@@ -24,19 +24,19 @@ namespace kriskt_42_20.Database.Configurations
 
             builder.Property(p => p.FirstName)
                 .IsRequired()
-                .HasColumnName("c_student_firstname")
+                .HasColumnName("c_prepod_firstname")
                 .HasColumnType(ColumnType.String).HasMaxLength(100)
                 .HasComment("Имя преподавателя");
 
             builder.Property(p => p.LastName)
                 .IsRequired()
-                .HasColumnName("c_student_lastname")
+                .HasColumnName("c_prepod_lastname")
                 .HasColumnType(ColumnType.String).HasMaxLength(100)
                 .HasComment("Фамилия преподавателя");
 
             builder.Property(p => p.MiddleName)
                 .IsRequired()
-                .HasColumnName("c_student_middlename")
+                .HasColumnName("c_prepod_middlename")
                 .HasColumnType(ColumnType.String).HasMaxLength(100)
                 .HasComment("Отчество преподавателя");
 

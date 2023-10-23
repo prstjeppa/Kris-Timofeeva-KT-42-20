@@ -58,7 +58,7 @@ namespace kriskt_42_20.Migrations
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(Max)")
-                        .HasColumnName("c_student_firstname")
+                        .HasColumnName("c_prepod_firstname")
                         .HasComment("Имя преподавателя");
 
                     b.Property<int>("KafedraId")
@@ -70,14 +70,14 @@ namespace kriskt_42_20.Migrations
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(Max)")
-                        .HasColumnName("c_student_lastname")
+                        .HasColumnName("c_prepod_lastname")
                         .HasComment("Фамилия преподавателя");
 
                     b.Property<string>("MiddleName")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(Max)")
-                        .HasColumnName("c_student_middlename")
+                        .HasColumnName("c_prepod_middlename")
                         .HasComment("Отчество преподавателя");
 
                     b.HasKey("PrepodId")
