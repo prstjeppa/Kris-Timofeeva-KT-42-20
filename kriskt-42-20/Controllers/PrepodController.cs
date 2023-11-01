@@ -6,7 +6,7 @@ using kriskt_42_20.Interfaces.PrepodInterfaces;
 namespace kriskt_42_20.Controllers
 {
     [ApiController]
-    [Route("contoller")]
+    [Route("prepod")]
     public class PrepodController : ControllerBase
     {
         private readonly ILogger<PrepodController> _logger;

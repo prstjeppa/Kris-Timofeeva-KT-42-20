@@ -1,8 +1,10 @@
 using kriskt_42_20.Database;
+using kriskt_42_20.Middlewares;
 using kriskt_42_20.ServiceInterfaces;
 using Microsoft.EntityFrameworkCore;
 using NLog;
 using NLog.Web;
+using System.Net;
 
 var builder = WebApplication.CreateBuilder(args);
 var logger = LogManager.Setup().LoadConfigurationFromAppSettings().GetCurrentClassLogger();
@@ -31,6 +33,8 @@ try
         app.UseSwagger();
         app.UseSwaggerUI();
     }
+
+    app.UseMiddleware<ExceptionHandlerMiddleware>();
 
     app.UseAuthorization();
 
