@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34024.191
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "kriskt-42-20", "kriskt-42-20\kriskt-42-20.csproj", "{EDCDB865-1568-4587-91C6-0326FC331F01}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "kriskt-42-20", "kriskt-42-20\kriskt-42-20.csproj", "{EDCDB865-1568-4587-91C6-0326FC331F01}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "kriskt-42-20.Tests", "kriskt-42-20.Tests\kriskt-42-20.Tests.csproj", "{EAF09230-1BB9-4084-8D06-22EB2CE4E26A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{EDCDB865-1568-4587-91C6-0326FC331F01}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EDCDB865-1568-4587-91C6-0326FC331F01}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EDCDB865-1568-4587-91C6-0326FC331F01}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EAF09230-1BB9-4084-8D06-22EB2CE4E26A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EAF09230-1BB9-4084-8D06-22EB2CE4E26A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EAF09230-1BB9-4084-8D06-22EB2CE4E26A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EAF09230-1BB9-4084-8D06-22EB2CE4E26A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

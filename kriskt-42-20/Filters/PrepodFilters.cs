@@ -2,6 +2,6 @@
 {
     public class PrepodKafedraFilter
     {
-        public string KafedraName { get; set; }
+        public string? KafedraName { get; set; }
     }
 }

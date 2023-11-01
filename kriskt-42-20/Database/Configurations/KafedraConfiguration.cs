@@ -22,13 +22,13 @@ namespace kriskt_42_20.Database.Configurations
 
                 //Расписываем как будут называться колонки в БД, а так же их обязательность и тд
                 builder.Property(p => p.KafedraId)
-                    .HasColumnName("kafedra_id")
+                    .HasColumnName("Идентификатор записи кафедры")
                     .HasComment("Идентификатор записи кафедры");
 
                 //HasComment добавит комментарий, который будет отображаться в СУБД (добавлять по желанию)
                 builder.Property(p => p.KafedraName)
                     .IsRequired()
-                    .HasColumnName("c_kafedra_name")
+                    .HasColumnName("Название кафедры")
                     .HasColumnType(ColumnType.String).HasMaxLength(100)
                     .HasComment("Название кафедры");
 

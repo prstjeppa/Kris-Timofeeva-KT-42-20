@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using kriskt_42_20.Database;
 
@@ -10,9 +11,11 @@ using kriskt_42_20.Database;
 namespace kriskt_42_20.Migrations
 {
     [DbContext(typeof(PrepodDbcontext))]
-    partial class PrepodDbcontextModelSnapshot : ModelSnapshot
+    [Migration("20231101114323_IsMarriedToUserAdded")]
+    partial class IsMarriedToUserAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
