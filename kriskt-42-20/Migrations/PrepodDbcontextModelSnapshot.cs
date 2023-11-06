@@ -78,7 +78,9 @@ namespace kriskt_42_20.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PrepodId"));
 
                     b.Property<int>("DegreeId")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("degree_id")
+                        .HasComment("Индетификатор ученой степени");
 
                     b.Property<string>("FirstName")
                         .IsRequired()
@@ -100,7 +102,6 @@ namespace kriskt_42_20.Migrations
                         .HasComment("Фамилия преподавателя");
 
                     b.Property<string>("Mail")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("MiddleName")
@@ -111,7 +112,6 @@ namespace kriskt_42_20.Migrations
                         .HasComment("Отчество преподавателя");
 
                     b.Property<string>("Phone")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("PrepodId")

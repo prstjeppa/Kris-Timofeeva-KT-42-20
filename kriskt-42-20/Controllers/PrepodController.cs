@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using kriskt_42_20.Filters.PrepodFilters;
+using kriskt_42_20.Filters.PrepodKafedraFilters;
 using kriskt_42_20.Interfaces.PrepodInterfaces;
 
 namespace kriskt_42_20.Controllers
@@ -25,5 +25,6 @@ namespace kriskt_42_20.Controllers
 
             return Ok(prepod);
         }
+
     }
 }

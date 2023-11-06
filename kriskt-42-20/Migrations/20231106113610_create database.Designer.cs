@@ -11,8 +11,8 @@ using kriskt_42_20.Database;
 namespace kriskt_42_20.Migrations
 {
     [DbContext(typeof(PrepodDbcontext))]
-    [Migration("20231101112851_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20231106113610_create database")]
+    partial class createdatabase
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -52,7 +52,7 @@ namespace kriskt_42_20.Migrations
                     b.Property<int>("KafedraId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasColumnName("kafedra_id")
+                        .HasColumnName("Идентификатор записи кафедры")
                         .HasComment("Идентификатор записи кафедры");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("KafedraId"));
@@ -61,7 +61,7 @@ namespace kriskt_42_20.Migrations
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(Max)")
-                        .HasColumnName("c_kafedra_name")
+                        .HasColumnName("Название кафедры")
                         .HasComment("Название кафедры");
 
                     b.HasKey("KafedraId")
@@ -80,8 +80,10 @@ namespace kriskt_42_20.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PrepodId"));
 
-                    b.Property<int>("Academic_degreeDegreeId")
-                        .HasColumnType("int");
+                    b.Property<int>("DegreeId")
+                        .HasColumnType("int")
+                        .HasColumnName("degree_id")
+                        .HasComment("Индетификатор ученой степени");
 
                     b.Property<string>("FirstName")
                         .IsRequired()
@@ -103,7 +105,6 @@ namespace kriskt_42_20.Migrations
                         .HasComment("Фамилия преподавателя");
 
                     b.Property<string>("Mail")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("MiddleName")
@@ -114,13 +115,12 @@ namespace kriskt_42_20.Migrations
                         .HasComment("Отчество преподавателя");
 
                     b.Property<string>("Phone")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("PrepodId")
                         .HasName("pk_cd_prepod_prepod_id");
 
-                    b.HasIndex("Academic_degreeDegreeId");
+                    b.HasIndex("DegreeId");
 
                     b.HasIndex(new[] { "KafedraId" }, "idx_cd_prepod_fk_f_kafedra_id");
 
@@ -129,9 +129,9 @@ namespace kriskt_42_20.Migrations
 
             modelBuilder.Entity("kriskt_42_20.Models.Prepod", b =>
                 {
-                    b.HasOne("kriskt_42_20.Models.Degree", "Academic_degree")
+                    b.HasOne("kriskt_42_20.Models.Degree", "Degree")
                         .WithMany()
-                        .HasForeignKey("Academic_degreeDegreeId")
+                        .HasForeignKey("DegreeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -142,7 +142,7 @@ namespace kriskt_42_20.Migrations
                         .IsRequired()
                         .HasConstraintName("fk_f_kafedra_id");
 
-                    b.Navigation("Academic_degree");
+                    b.Navigation("Degree");
 
                     b.Navigation("Kafedra");
                 });

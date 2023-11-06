@@ -5,7 +5,7 @@
 namespace kriskt_42_20.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class createdatabase : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -27,13 +27,13 @@ namespace kriskt_42_20.Migrations
                 name: "cd_kafedra",
                 columns: table => new
                 {
-                    kafedra_id = table.Column<int>(type: "int", nullable: false, comment: "Идентификатор записи кафедры")
+                    Идентификаторзаписикафедры = table.Column<int>(name: "Идентификатор записи кафедры", type: "int", nullable: false, comment: "Идентификатор записи кафедры")
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    c_kafedra_name = table.Column<string>(type: "nvarchar(Max)", maxLength: 100, nullable: false, comment: "Название кафедры")
+                    Названиекафедры = table.Column<string>(name: "Название кафедры", type: "nvarchar(Max)", maxLength: 100, nullable: false, comment: "Название кафедры")
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("pk_cd_kafedra_kafedra_id", x => x.kafedra_id);
+                    table.PrimaryKey("pk_cd_kafedra_kafedra_id", x => x.Идентификаторзаписикафедры);
                 });
 
             migrationBuilder.CreateTable(
@@ -45,17 +45,17 @@ namespace kriskt_42_20.Migrations
                     c_prepod_firstname = table.Column<string>(type: "nvarchar(Max)", maxLength: 100, nullable: false, comment: "Имя преподавателя"),
                     c_prepod_lastname = table.Column<string>(type: "nvarchar(Max)", maxLength: 100, nullable: false, comment: "Фамилия преподавателя"),
                     c_prepod_middlename = table.Column<string>(type: "nvarchar(Max)", maxLength: 100, nullable: false, comment: "Отчество преподавателя"),
-                    Phone = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Mail = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Phone = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Mail = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     kafedra_id = table.Column<int>(type: "int", nullable: false, comment: "Индетификатор кафедры"),
-                    Academic_degreeDegreeId = table.Column<int>(type: "int", nullable: false)
+                    degree_id = table.Column<int>(type: "int", nullable: false, comment: "Индетификатор ученой степени")
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("pk_cd_prepod_prepod_id", x => x.prepod_id);
                     table.ForeignKey(
-                        name: "FK_cd_prepod_cd_degree_Academic_degreeDegreeId",
-                        column: x => x.Academic_degreeDegreeId,
+                        name: "FK_cd_prepod_cd_degree_degree_id",
+                        column: x => x.degree_id,
                         principalTable: "cd_degree",
                         principalColumn: "degree_id",
                         onDelete: ReferentialAction.Cascade);
@@ -63,7 +63,7 @@ namespace kriskt_42_20.Migrations
                         name: "fk_f_kafedra_id",
                         column: x => x.kafedra_id,
                         principalTable: "cd_kafedra",
-                        principalColumn: "kafedra_id",
+                        principalColumn: "Идентификатор записи кафедры",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -73,9 +73,9 @@ namespace kriskt_42_20.Migrations
                 column: "kafedra_id");
 
             migrationBuilder.CreateIndex(
-                name: "IX_cd_prepod_Academic_degreeDegreeId",
+                name: "IX_cd_prepod_degree_id",
                 table: "cd_prepod",
-                column: "Academic_degreeDegreeId");
+                column: "degree_id");
         }
 
         /// <inheritdoc />

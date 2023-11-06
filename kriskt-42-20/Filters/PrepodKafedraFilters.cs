@@ -3,5 +3,6 @@
     public class PrepodKafedraFilter
     {
         public string? KafedraName { get; set; }
+        public string? Name_degree { get; set; }
     }
 }
