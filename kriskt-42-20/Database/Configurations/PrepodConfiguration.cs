@@ -44,6 +44,10 @@ namespace kriskt_42_20.Database.Configurations
                 .HasColumnName("kafedra_id")
                 .HasComment("Индетификатор кафедры");
 
+            builder.Property(p => p.DegreeId)
+                .HasColumnName("degree_id")
+                .HasComment("Индетификатор ученой степени");
+
             builder.ToTable(TableName)
                 .HasOne(p => p.Kafedra)
                 .WithMany()

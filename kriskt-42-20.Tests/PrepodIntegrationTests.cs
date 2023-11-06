@@ -1,5 +1,5 @@
 ﻿using kriskt_42_20.Database;
-using kriskt_42_20.Filters.PrepodFilters;
+using kriskt_42_20.Filters.PrepodKafedraFilters;
 using kriskt_42_20.Models;
 using kriskt_42_20.Interfaces.PrepodInterfaces;
 using Microsoft.EntityFrameworkCore;
@@ -24,7 +24,7 @@ namespace kriskt_42_20.Tests
         }
 
         [Fact]
-        public async Task GetPrepodsByGroupAsync_KT4220_TwoObjects()
+        public async Task GetPrepodsByKafedraAsync_KT4220_TwoObjects()
         {
             // Arrange
             var ctx = new PrepodDbcontext(_dbContextOptions);
@@ -72,7 +72,7 @@ namespace kriskt_42_20.Tests
             {
                 KafedraName = "Кафедра компьютерных технологий"
             };
-            var prepodsResult = await prepodService.GetPrepodsByGroupAsync(filter, CancellationToken.None);
+            var prepodsResult = await prepodService.GetPrepodsByKafedraAsync(filter, CancellationToken.None);
 
             // Assert
             Assert.Equal(1, prepodsResult.Length);

@@ -7,7 +7,7 @@ namespace kriskt_42_20.Interfaces.PrepodInterfaces
 {
     public interface IPrepodService
     {
-        public Task<Prepod[]> GetPrepodsByGroupAsync(PrepodKafedraFilter filter, CancellationToken cancellationToken);
+        public Task<Prepod[]> GetPrepodsByKafedraAsync(PrepodKafedraFilter filter, CancellationToken cancellationToken);
     }
     public class PrepodService : IPrepodService
     {
@@ -16,7 +16,7 @@ namespace kriskt_42_20.Interfaces.PrepodInterfaces
         {
             _dbContext = dbContext;
         }
-        public Task<Prepod[]> GetPrepodsByGroupAsync(PrepodKafedraFilter filter, CancellationToken cancellationToken = default)
+        public Task<Prepod[]> GetPrepodsByKafedraAsync(PrepodKafedraFilter filter, CancellationToken cancellationToken = default)
         {
             var prepod = _dbContext.Set<Prepod>().Where(w => w.Kafedra.KafedraName == filter.KafedraName).ToArrayAsync(cancellationToken);
 

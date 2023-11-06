@@ -18,10 +18,10 @@ namespace kriskt_42_20.Controllers
             _prepodService = prepodService;
         }
 
-        [HttpPost(Name = "GetPrepodsByGroup")]
-        public async Task<IActionResult> GetPrepodsByGroupAsync(PrepodKafedraFilter filter, CancellationToken cancellationToken = default)
+        [HttpPost(Name = "GetPrepodsByKafedra")]
+        public async Task<IActionResult> GetPrepodsByKafedraAsync(PrepodKafedraFilter filter, CancellationToken cancellationToken = default)
         {
-            var prepod = await _prepodService.GetPrepodsByGroupAsync(filter, cancellationToken);
+            var prepod = await _prepodService.GetPrepodsByKafedraAsync(filter, cancellationToken);
 
             return Ok(prepod);
         }

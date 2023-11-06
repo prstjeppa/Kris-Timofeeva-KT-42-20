@@ -15,6 +15,7 @@ namespace kriskt_42_20.Models
             return Regex.Match(Mail, @"^((\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*)\\s*[;]{0,1}\\s*)+$").Success;
         }
         public int KafedraId { get; set; }
+        public int DegreeId { get; set; }
         public Kafedra? Kafedra { get; set; }
         public Degree? Degree { get; set; }
 
