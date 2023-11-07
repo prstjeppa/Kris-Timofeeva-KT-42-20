@@ -25,6 +25,7 @@ namespace kriskt_42_20.Controllers
 
             return Ok(prepod);
         }
+        
 
     }
 }

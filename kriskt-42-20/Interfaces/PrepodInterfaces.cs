@@ -18,9 +18,11 @@ namespace kriskt_42_20.Interfaces.PrepodInterfaces
         }
         public Task<Prepod[]> GetPrepodsByKafedraAsync(PrepodKafedraFilter filter, CancellationToken cancellationToken = default)
         {
-            var prepod = _dbContext.Set<Prepod>().Where(w => w.Kafedra.KafedraName == filter.KafedraName && w.Degree.Name_degree == filter.Name_degree).ToArrayAsync(cancellationToken);
+            var prepod = _dbContext.Set<Prepod>().Where(w => w.Kafedra.KafedraName == filter.KafedraName || w.Degree.Name_degree == filter.Name_degree).ToArrayAsync(cancellationToken);
 
             return prepod;
         }
+
     }
+
 }
