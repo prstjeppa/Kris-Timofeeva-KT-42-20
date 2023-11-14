@@ -39,14 +39,11 @@ namespace kriskt_42_20.Database.Configurations
                 .HasColumnName("c_prepod_middlename")
                 .HasColumnType(ColumnType.String).HasMaxLength(100)
                 .HasComment("Отчество преподавателя");
-
+            //kafedra
             builder.Property(p => p.KafedraId)
                 .HasColumnName("kafedra_id")
-                .HasComment("Индетификатор кафедры");
-
-            builder.Property(p => p.DegreeId)
-                .HasColumnName("degree_id")
-                .HasComment("Индетификатор ученой степени");
+                .HasComment("Индетификатор кафедры")
+                .HasColumnType(ColumnType.Int);
 
             builder.ToTable(TableName)
                 .HasOne(p => p.Kafedra)
@@ -58,6 +55,29 @@ namespace kriskt_42_20.Database.Configurations
             builder.ToTable(TableName)
                 .HasIndex(p => p.KafedraId, $"idx_{TableName}_fk_f_kafedra_id");
 
+            //Добавим явную автоподгрузку связанной сущности
+            builder.Navigation(p => p.Kafedra)
+                .AutoInclude();
+
+            //degree
+            builder.Property(p => p.DegreeId)
+                .HasColumnName("degree_id")
+                .HasComment("Индетификатор ученой степени")
+                .HasColumnType(ColumnType.Int);
+
+            builder.ToTable(TableName)
+                .HasOne(p => p.Degree)
+                .WithMany()
+                .HasForeignKey(p => p.DegreeId)
+                .HasConstraintName("fk_f_degree_id")
+                .OnDelete(DeleteBehavior.Cascade);
+
+            builder.ToTable(TableName)
+                .HasIndex(p => p.DegreeId, $"idx_{TableName}_fk_f_degree_id");
+
+            //Добавим явную автоподгрузку связанной сущности
+            builder.Navigation(p => p.Degree)
+                .AutoInclude();
         }
 
     }

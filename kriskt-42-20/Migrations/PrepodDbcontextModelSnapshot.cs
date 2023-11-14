@@ -16,7 +16,7 @@ namespace kriskt_42_20.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.11")
+                .HasAnnotation("ProductVersion", "7.0.13")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -41,7 +41,7 @@ namespace kriskt_42_20.Migrations
                     b.HasKey("DegreeId")
                         .HasName("pk_cd_degree_degree_id");
 
-                    b.ToTable("cd_degree", (string)null);
+                    b.ToTable("Degree");
                 });
 
             modelBuilder.Entity("kriskt_42_20.Models.Kafedra", b =>
@@ -117,7 +117,7 @@ namespace kriskt_42_20.Migrations
                     b.HasKey("PrepodId")
                         .HasName("pk_cd_prepod_prepod_id");
 
-                    b.HasIndex("DegreeId");
+                    b.HasIndex(new[] { "DegreeId" }, "idx_cd_prepod_fk_f_degree_id");
 
                     b.HasIndex(new[] { "KafedraId" }, "idx_cd_prepod_fk_f_kafedra_id");
 
@@ -130,7 +130,8 @@ namespace kriskt_42_20.Migrations
                         .WithMany()
                         .HasForeignKey("DegreeId")
                         .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .IsRequired()
+                        .HasConstraintName("fk_f_degree_id");
 
                     b.HasOne("kriskt_42_20.Models.Kafedra", "Kafedra")
                         .WithMany()

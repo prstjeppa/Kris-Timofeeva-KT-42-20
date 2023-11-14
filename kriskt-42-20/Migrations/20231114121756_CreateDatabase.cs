@@ -5,24 +5,11 @@
 namespace kriskt_42_20.Migrations
 {
     /// <inheritdoc />
-    public partial class createdatabase : Migration
+    public partial class CreateDatabase : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.CreateTable(
-                name: "cd_degree",
-                columns: table => new
-                {
-                    degree_id = table.Column<int>(type: "int", nullable: false, comment: "Идентификатор записи ученой степени")
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    c_name_degree = table.Column<string>(type: "nvarchar(Max)", maxLength: 100, nullable: false, comment: "Название ученой степени")
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("pk_cd_degree_degree_id", x => x.degree_id);
-                });
-
             migrationBuilder.CreateTable(
                 name: "cd_kafedra",
                 columns: table => new
@@ -34,6 +21,19 @@ namespace kriskt_42_20.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("pk_cd_kafedra_kafedra_id", x => x.Идентификаторзаписикафедры);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Degree",
+                columns: table => new
+                {
+                    degree_id = table.Column<int>(type: "int", nullable: false, comment: "Идентификатор записи ученой степени")
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    c_name_degree = table.Column<string>(type: "nvarchar(Max)", maxLength: 100, nullable: false, comment: "Название ученой степени")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("pk_cd_degree_degree_id", x => x.degree_id);
                 });
 
             migrationBuilder.CreateTable(
@@ -54,9 +54,9 @@ namespace kriskt_42_20.Migrations
                 {
                     table.PrimaryKey("pk_cd_prepod_prepod_id", x => x.prepod_id);
                     table.ForeignKey(
-                        name: "FK_cd_prepod_cd_degree_degree_id",
+                        name: "fk_f_degree_id",
                         column: x => x.degree_id,
-                        principalTable: "cd_degree",
+                        principalTable: "Degree",
                         principalColumn: "degree_id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
@@ -68,14 +68,14 @@ namespace kriskt_42_20.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "idx_cd_prepod_fk_f_degree_id",
+                table: "cd_prepod",
+                column: "degree_id");
+
+            migrationBuilder.CreateIndex(
                 name: "idx_cd_prepod_fk_f_kafedra_id",
                 table: "cd_prepod",
                 column: "kafedra_id");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_cd_prepod_degree_id",
-                table: "cd_prepod",
-                column: "degree_id");
         }
 
         /// <inheritdoc />
@@ -85,7 +85,7 @@ namespace kriskt_42_20.Migrations
                 name: "cd_prepod");
 
             migrationBuilder.DropTable(
-                name: "cd_degree");
+                name: "Degree");
 
             migrationBuilder.DropTable(
                 name: "cd_kafedra");

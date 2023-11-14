@@ -32,7 +32,7 @@ namespace kriskt_42_20.Database.Configurations
                 .HasColumnType(ColumnType.String).HasMaxLength(100)
                 .HasComment("Название ученой степени");
 
-            builder.ToTable(TableName);
+            
         }
     }
 }

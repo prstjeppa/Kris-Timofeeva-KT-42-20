@@ -8,9 +8,9 @@ namespace kriskt_42_20.Database
     public class PrepodDbcontext : DbContext
     {
         //Добавляем таблицы
-        DbSet<Kafedra> Kafedra { get; set; }
-        DbSet<Prepod> Prepod { get; set; }
-        DbSet<Degree> Degree { get; set; }
+        public DbSet<Kafedra> Kafedra { get; set; }
+        public DbSet<Prepod> Prepod { get; set; }
+        public DbSet<Degree> Degree { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

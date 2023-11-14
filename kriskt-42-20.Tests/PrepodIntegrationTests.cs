@@ -1,7 +1,7 @@
 ﻿using kriskt_42_20.Database;
 using kriskt_42_20.Filters.PrepodKafedraFilters;
 using kriskt_42_20.Models;
-using kriskt_42_20.Interfaces.PrepodInterfaces;
+using kriskt_42_20.Interfaces.PrepodsInterfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
