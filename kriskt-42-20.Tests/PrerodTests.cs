@@ -9,7 +9,7 @@ namespace kriskt_42_20.Tests
         {
             var MailTest = new Prepod
             {
-                Mail = "kafvt@mail.ru"
+                Mail = "test@mail.ru"
             };
 
             var result = MailTest.IsValidMail();

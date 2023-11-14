@@ -1,46 +1,43 @@
 ﻿using kriskt_42_20.Database;
-using kriskt_42_20.Filters.PrepodKafedraFilters;
+using kriskt_42_20.Filters.PrepodDegreeFilters;
+using kriskt_42_20.Interfaces.DegreesInterfaces;
 using kriskt_42_20.Models;
-using kriskt_42_20.Interfaces.PrepodsInterfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace kriskt_42_20.Tests
 {
-    public class PrepodIntegrationTests
+    public class DegreeIntegrationTests
     {
         public readonly DbContextOptions<PrepodDbcontext> _dbContextOptions;
 
-        public PrepodIntegrationTests()
+        public DegreeIntegrationTests()
         {
             _dbContextOptions = new DbContextOptionsBuilder<PrepodDbcontext>()
             .UseInMemoryDatabase(databaseName: "prepod_db")
             .Options;
         }
-
         [Fact]
-        public async Task GetPrepodsByKafedraAsync_KT4220_TwoObjects()
+        public async Task GetPrepodsByDegreeAsync_KT4220_TwoObjects()
         {
-            // Arrange
             var ctx = new PrepodDbcontext(_dbContextOptions);
-            var prepodService = new PrepodService(ctx);
-            var kafedra = new List<Kafedra>
+            var degreeService = new DegreeService(ctx);
+            var degree = new List<Degree>
             {
-                new Kafedra
+                new Degree
                 {
-                    KafedraName = "кафедра компьютерных технологий"
+                    Name_degree = "доктор наук"
                 },
-                new Kafedra
+                new Degree
                 {
-                    KafedraName = "кафедра вычислительной техники"
+                    Name_degree = "кандидат наук"
                 }
             };
-            await ctx.Set<Kafedra>().AddRangeAsync(kafedra);
+            await ctx.Set<Degree>().AddRangeAsync(degree);
 
             var prepods = new List<Prepod>
             {
@@ -70,15 +67,17 @@ namespace kriskt_42_20.Tests
             await ctx.SaveChangesAsync();
 
             // Act
-            var filter = new PrepodKafedraFilter
+            var filter = new PrepodDegreeFilter
             {
-                KafedraName = "кафедра вычислительной техники"
+                Name_degree = "кандидат наук"
             };
-            var prepodsResult = await prepodService.GetPrepodsByKafedraAsync(filter, CancellationToken.None);
+            var prepodsResult = await degreeService.GetPrepodsByDegreeAsync(filter, CancellationToken.None);
 
             // Assert
-            //Assert.Single(prepodsResult);
             Assert.Equal(0, prepodsResult.Length);
         }
+        
+
     }
 }
+
