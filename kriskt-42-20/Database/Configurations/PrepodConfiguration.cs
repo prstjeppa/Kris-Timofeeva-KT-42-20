@@ -49,11 +49,11 @@ namespace kriskt_42_20.Database.Configurations
                 .HasOne(p => p.Kafedra)
                 .WithMany()
                 .HasForeignKey(p => p.KafedraId)
-                .HasConstraintName("fk_f_kafedra_id")
+                .HasConstraintName("fk_c_kafedra_id")
                 .OnDelete(DeleteBehavior.Cascade);
 
             builder.ToTable(TableName)
-                .HasIndex(p => p.KafedraId, $"idx_{TableName}_fk_f_kafedra_id");
+                .HasIndex(p => p.KafedraId, $"idx_{TableName}_fk_c_kafedra_id");
 
             //Добавим явную автоподгрузку связанной сущности
             builder.Navigation(p => p.Kafedra)
@@ -69,11 +69,11 @@ namespace kriskt_42_20.Database.Configurations
                 .HasOne(p => p.Degree)
                 .WithMany()
                 .HasForeignKey(p => p.DegreeId)
-                .HasConstraintName("fk_f_degree_id")
+                .HasConstraintName("fk_c_degree_id")
                 .OnDelete(DeleteBehavior.Cascade);
 
             builder.ToTable(TableName)
-                .HasIndex(p => p.DegreeId, $"idx_{TableName}_fk_f_degree_id");
+                .HasIndex(p => p.DegreeId, $"idx_{TableName}_fk_c_degree_id");
 
             //Добавим явную автоподгрузку связанной сущности
             builder.Navigation(p => p.Degree)

@@ -5,7 +5,7 @@
 namespace kriskt_42_20.Migrations
 {
     /// <inheritdoc />
-    public partial class CreateDatabase : Migration
+    public partial class Cret : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -54,13 +54,13 @@ namespace kriskt_42_20.Migrations
                 {
                     table.PrimaryKey("pk_cd_prepod_prepod_id", x => x.prepod_id);
                     table.ForeignKey(
-                        name: "fk_f_degree_id",
+                        name: "fk_c_degree_id",
                         column: x => x.degree_id,
                         principalTable: "Degree",
                         principalColumn: "degree_id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "fk_f_kafedra_id",
+                        name: "fk_c_kafedra_id",
                         column: x => x.kafedra_id,
                         principalTable: "cd_kafedra",
                         principalColumn: "Идентификатор записи кафедры",
@@ -68,12 +68,12 @@ namespace kriskt_42_20.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "idx_cd_prepod_fk_f_degree_id",
+                name: "idx_cd_prepod_fk_c_degree_id",
                 table: "cd_prepod",
                 column: "degree_id");
 
             migrationBuilder.CreateIndex(
-                name: "idx_cd_prepod_fk_f_kafedra_id",
+                name: "idx_cd_prepod_fk_c_kafedra_id",
                 table: "cd_prepod",
                 column: "kafedra_id");
         }

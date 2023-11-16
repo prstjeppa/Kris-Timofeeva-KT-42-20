@@ -1,14 +1,8 @@
 ﻿using kriskt_42_20.Database;
-using kriskt_42_20.Filters.PrepodKafedraFilters;
 using kriskt_42_20.Models;
 using kriskt_42_20.Interfaces.PrepodsInterfaces;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
+using kriskt_42_20.Filters.PrepodKafedraFilters;
 
 namespace kriskt_42_20.Tests
 {
@@ -24,7 +18,7 @@ namespace kriskt_42_20.Tests
         }
 
         [Fact]
-        public async Task GetPrepodsByKafedraAsync_KT4220_TwoObjects()
+        public async Task GetPrepodsByKafedraAsync_KT4220_OneObjects()
         {
             // Arrange
             var ctx = new PrepodDbcontext(_dbContextOptions);
@@ -33,14 +27,35 @@ namespace kriskt_42_20.Tests
             {
                 new Kafedra
                 {
+                    KafedraId =1,
                     KafedraName = "кафедра компьютерных технологий"
                 },
                 new Kafedra
-                {
-                    KafedraName = "кафедра вычислительной техники"
+                {   
+                    KafedraId =2,
+                    KafedraName = "кафедра инженерной техники"
                 }
             };
             await ctx.Set<Kafedra>().AddRangeAsync(kafedra);
+
+            await ctx.SaveChangesAsync();
+
+            var degree = new List<Degree>
+            {
+                new Degree
+                {
+                    DegreeId =1,
+                    Name_degree = "доктор наук"
+                },
+                new Degree
+                {
+                    DegreeId =2,
+                    Name_degree = "кандидат наук"
+                }
+            };
+            await ctx.Set<Degree>().AddRangeAsync(degree);
+
+            await ctx.SaveChangesAsync();
 
             var prepods = new List<Prepod>
             {
@@ -52,7 +67,7 @@ namespace kriskt_42_20.Tests
                     Phone = "555",
                     Mail = "123@mail.ru",
                     KafedraId = 1,
-                    DegreeId = 2,
+                    DegreeId = 2
                 },
                 new Prepod
                 {
@@ -61,8 +76,18 @@ namespace kriskt_42_20.Tests
                     MiddleName = "mem",
                     Phone = "9999",
                     Mail = "mem@gmail.com",
+                    KafedraId = 1,
+                    DegreeId = 2
+                },
+                new Prepod
+                {
+                    FirstName = "mem1",
+                    LastName = "mem1",
+                    MiddleName = "mem1",
+                    Phone = "99991",
+                    Mail = "mem1@gmail.com",
                     KafedraId = 2,
-                    DegreeId = 2,
+                    DegreeId = 2
                 }
             };
             await ctx.Set<Prepod>().AddRangeAsync(prepods);
@@ -72,13 +97,11 @@ namespace kriskt_42_20.Tests
             // Act
             var filter = new PrepodKafedraFilter
             {
-                KafedraName = "кафедра вычислительной техники"
+                KafedraName = "кафедра компьютерных технологий"
             };
             var prepodsResult = await prepodService.GetPrepodsByKafedraAsync(filter, CancellationToken.None);
 
-            // Assert
-            //Assert.Single(prepodsResult);
-            Assert.Equal(0, prepodsResult.Length);
+            Assert.Equal(2, prepodsResult.Length);
         }
     }
 }

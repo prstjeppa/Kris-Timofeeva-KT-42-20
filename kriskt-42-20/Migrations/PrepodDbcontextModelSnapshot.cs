@@ -117,9 +117,9 @@ namespace kriskt_42_20.Migrations
                     b.HasKey("PrepodId")
                         .HasName("pk_cd_prepod_prepod_id");
 
-                    b.HasIndex(new[] { "DegreeId" }, "idx_cd_prepod_fk_f_degree_id");
+                    b.HasIndex(new[] { "DegreeId" }, "idx_cd_prepod_fk_c_degree_id");
 
-                    b.HasIndex(new[] { "KafedraId" }, "idx_cd_prepod_fk_f_kafedra_id");
+                    b.HasIndex(new[] { "KafedraId" }, "idx_cd_prepod_fk_c_kafedra_id");
 
                     b.ToTable("cd_prepod", (string)null);
                 });
@@ -127,22 +127,32 @@ namespace kriskt_42_20.Migrations
             modelBuilder.Entity("kriskt_42_20.Models.Prepod", b =>
                 {
                     b.HasOne("kriskt_42_20.Models.Degree", "Degree")
-                        .WithMany()
+                        .WithMany("Prepods")
                         .HasForeignKey("DegreeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
-                        .HasConstraintName("fk_f_degree_id");
+                        .HasConstraintName("fk_c_degree_id");
 
                     b.HasOne("kriskt_42_20.Models.Kafedra", "Kafedra")
-                        .WithMany()
+                        .WithMany("Prepods")
                         .HasForeignKey("KafedraId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
-                        .HasConstraintName("fk_f_kafedra_id");
+                        .HasConstraintName("fk_c_kafedra_id");
 
                     b.Navigation("Degree");
 
                     b.Navigation("Kafedra");
+                });
+
+            modelBuilder.Entity("kriskt_42_20.Models.Degree", b =>
+                {
+                    b.Navigation("Prepods");
+                });
+
+            modelBuilder.Entity("kriskt_42_20.Models.Kafedra", b =>
+                {
+                    b.Navigation("Prepods");
                 });
 #pragma warning restore 612, 618
         }
